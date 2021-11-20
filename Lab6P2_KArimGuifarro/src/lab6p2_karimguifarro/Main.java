@@ -5,7 +5,32 @@
  */
 package lab6p2_karimguifarro;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JColorChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -30,6 +55,20 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         Registro = new javax.swing.JDialog();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        nomr = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        usr = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        aper = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        contr = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        bt_color = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        datet = new javax.swing.JFormattedTextField();
         entrenador = new javax.swing.JDialog();
         tab1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -77,15 +116,109 @@ public class Main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        Registro.setMinimumSize(new java.awt.Dimension(410, 363));
+        Registro.setResizable(false);
+        Registro.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                RegistroComponentShown(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setText("Registro");
+
+        jLabel11.setText("Nombre:");
+
+        jLabel12.setText("Usuario:");
+
+        jLabel13.setText("Apellido:");
+
+        jLabel14.setText("Contraseña:");
+
+        jLabel15.setText("Fecha(dd/mm/yyy):");
+
+        jLabel16.setText("Color Favorito:");
+
+        bt_color.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_colorMouseClicked(evt);
+            }
+        });
+
+        jButton8.setText("Registrar");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+
+        datet.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+
         javax.swing.GroupLayout RegistroLayout = new javax.swing.GroupLayout(Registro.getContentPane());
         Registro.getContentPane().setLayout(RegistroLayout);
         RegistroLayout.setHorizontalGroup(
             RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(RegistroLayout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton8)
+                    .addComponent(jLabel10))
+                .addGap(92, 92, 92))
+            .addGroup(RegistroLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(aper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nomr, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(datet, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usr)
+                    .addComponent(jLabel14)
+                    .addComponent(contr)
+                    .addComponent(jLabel16)
+                    .addComponent(bt_color, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
         RegistroLayout.setVerticalGroup(
             RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(RegistroLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
+                .addGap(18, 18, 18)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegistroLayout.createSequentialGroup()
+                        .addComponent(bt_color, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addComponent(jButton8)
+                        .addGap(43, 43, 43))
+                    .addGroup(RegistroLayout.createSequentialGroup()
+                        .addComponent(datet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         entrenador.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -238,10 +371,10 @@ public class Main extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
+                        .addGap(109, 109, 109)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -265,7 +398,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +407,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
+                        .addGap(81, 81, 81)
                         .addComponent(jButton5)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -337,7 +470,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(tab1)
+            .addComponent(tab1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
         );
         entrenadorLayout.setVerticalGroup(
             entrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,22 +565,20 @@ public class Main extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String usuar = user.getText(), cont = con.getText();
         for (Usuarios u : us) {
-          if (u.getUsuario().equals(usuar) && u.getContraseña().equals(cont)) {
-                entrenador.setVisible(true); 
+            if (u.getUsuario().equals(usuar) && u.getContraseña().equals(cont)) {
+                entrenador.setVisible(true);
                 nom.setText(u.getNombre());
                 user.setText("");
                 con.setText("");
-            } 
+            }
         }
 
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void entrenadorComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_entrenadorComponentShown
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (Usuarios usuario : usuarios) {
-            if (usuario instanceof vendedor) {
-                modelo.addElement(usuario.getNombre());
-            }
+        for (Usuarios usuario : us) {
+
         }
         cbox.setModel(modelo);
     }//GEN-LAST:event_entrenadorComponentShown
@@ -465,16 +596,45 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cboxMouseClicked
 
     private void cboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboxItemStateChanged
-        if (cbox.getSelectedIndex()>=0) {
-            v1 = (vendedor) cbox.getSelectedItem();
-            this.labcom.setText(v1.getNombre());
-            this.labcom1.setText(String.valueOf(v1.getEstrellas()));
+        if (cbox.getSelectedIndex() >= 0) {
+
         }
     }//GEN-LAST:event_cboxItemStateChanged
 
     private void list4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_list4MouseClicked
+
+    private void bt_colorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_colorMouseClicked
+        bt_color.setBackground(
+                JColorChooser.showDialog(
+                        this, "Seleccione un color",
+                        Color.yellow)
+        );
+    }//GEN-LAST:event_bt_colorMouseClicked
+
+    private void RegistroComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_RegistroComponentShown
+
+    }//GEN-LAST:event_RegistroComponentShown
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        String nombre = nomr.getText(), apellido = aper.getText(), usuario = usr.getText(), contraseña = contr.getText();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date F_nacimiento = new Date();
+        try {
+            F_nacimiento = formato.parse(datet.getText());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+        System.out.println(F_nacimiento.toString());
+        LocalDate hoy = LocalDate.now();
+        LocalDate nacimiento = F_nacimiento.toInstant().
+                atZone(ZoneId.systemDefault()).toLocalDate();
+        int edad = (int) ChronoUnit.YEARS.between(nacimiento, hoy);
+        System.out.println(edad);
+        Color color = bt_color.getBackground();
+        us.add(new Usuarios(nombre, apellido, usuario, contraseña, F_nacimiento, edad, color));
+    }//GEN-LAST:event_jButton8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -513,8 +673,12 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Registro;
+    private javax.swing.JTextField aper;
+    private javax.swing.JButton bt_color;
     private javax.swing.JComboBox<String> cbox;
     private javax.swing.JTextField con;
+    private javax.swing.JTextField contr;
+    private javax.swing.JFormattedTextField datet;
     private javax.swing.JDialog entrenador;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -522,7 +686,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
@@ -557,8 +729,54 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel labcom5;
     private javax.swing.JList<String> list4;
     private javax.swing.JLabel nom;
+    private javax.swing.JTextField nomr;
     private javax.swing.JTabbedPane tab1;
     private javax.swing.JTextField user;
+    private javax.swing.JTextField usr;
     // End of variables declaration//GEN-END:variables
-ArrayList <Usuarios> us=new ArrayList();
+ArrayList<Usuarios> us = new ArrayList();
+ArrayList<PokeGrupo> pg = new ArrayList();
+    public void inicio() throws ParseException {
+        String nombre = "Josue", apellido = "Rodriguez", usuario = "ReverseJosh", contraseña = "josu123";
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date naci = formato.parse("26/10/1998");
+        Color c = Color.BLACK;
+        int edad = ed(naci);
+        ArrayList<Pokemon> pokedex = new ArrayList();
+        pokedex.add(new Pokemon("Alakazam", "media", "psiquico", 100, 150));
+        ArrayList<Pokemon> pokedex1 = new ArrayList();
+        pokedex1.add(new Pokemon("Gengar", "media", "fantasma", 150, 100));
+        ArrayList<Pokemon> pokedex2 = new ArrayList();
+        ArrayList<Usuarios> miembros = new ArrayList();
+        miembros.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex, pokedex1, pokedex2));
+        us.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex, pokedex1, pokedex2));
+        nombre = "Sara";
+        apellido = "Pineda";
+        usuario = "SMelissa";
+        contraseña = "SM123";
+
+        naci = formato.parse("26/10/1998");
+        c = Color.BLACK;
+        edad = ed(naci);
+        ArrayList<Pokemon> pokedex3 = new ArrayList();
+        pokedex3.add(new Pokemon("Mr.Mime", "media", "psiquico", 130, 120));
+        ArrayList<Pokemon> pokedex4 = new ArrayList();
+        pokedex4.add(new Pokemon("Mimikyu", "alta", "fantasma", 150, 100));
+        ArrayList<Pokemon> pokedex5 = new ArrayList();
+        miembros.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex, pokedex1, pokedex2));
+
+        us.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex3, pokedex4, pokedex5));
+        String pnombre = "Neo Rocket", tipo = "Avanzado";
+        Usuarios lider = us.get(1);
+        pg.add(new PokeGrupo(pnombre,tipo,miembros,lider));
+    }
+
+    public int ed(Date naci) {
+        LocalDate hoy = LocalDate.now();
+        LocalDate nacimiento = naci.toInstant().
+                atZone(ZoneId.systemDefault()).toLocalDate();
+        int edad = (int) ChronoUnit.YEARS.between(nacimiento, hoy);
+        System.out.println(edad);
+        return edad;
+    }
 }

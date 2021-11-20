@@ -6,6 +6,7 @@
 package lab6p2_karimguifarro;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -17,11 +18,13 @@ public class Usuarios {
     Date F_nacimiento;
     int edad;
    Color color;
-
+   ArrayList<Pokemon> pokedex;
+   ArrayList<Pokemon> pokedex1;
+   ArrayList<Pokemon> pokedex2;
     public Usuarios() {
     }
 
-    public Usuarios(String nombre, String apellido, String usuario, String contraseña, Date F_nacimiento, int edad, Color color) {
+    public Usuarios(String nombre, String apellido, String usuario, String contraseña, Date F_nacimiento, int edad, Color color, ArrayList<Pokemon> pokedex, ArrayList<Pokemon> pokedex1, ArrayList<Pokemon> pokedex2) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
@@ -29,7 +32,11 @@ public class Usuarios {
         this.F_nacimiento = F_nacimiento;
         this.edad = edad;
         this.color = color;
+        this.pokedex = pokedex;
+        this.pokedex1 = pokedex1;
+        this.pokedex2 = pokedex2;
     }
+
 
     public String getNombre() {
         return nombre;
