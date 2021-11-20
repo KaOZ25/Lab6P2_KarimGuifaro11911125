@@ -19,12 +19,10 @@ public class Usuarios {
     int edad;
    Color color;
    ArrayList<Pokemon> pokedex;
-   ArrayList<Pokemon> pokedex1;
-   ArrayList<Pokemon> pokedex2;
     public Usuarios() {
     }
 
-    public Usuarios(String nombre, String apellido, String usuario, String contraseña, Date F_nacimiento, int edad, Color color, ArrayList<Pokemon> pokedex, ArrayList<Pokemon> pokedex1, ArrayList<Pokemon> pokedex2) {
+    public Usuarios(String nombre, String apellido, String usuario, String contraseña, Date F_nacimiento, int edad, Color color, ArrayList<Pokemon> pokedex) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
@@ -33,8 +31,6 @@ public class Usuarios {
         this.edad = edad;
         this.color = color;
         this.pokedex = pokedex;
-        this.pokedex1 = pokedex1;
-        this.pokedex2 = pokedex2;
     }
 
 
@@ -94,6 +90,14 @@ public class Usuarios {
         this.color = color;
     }
 
+    public ArrayList<Pokemon> getPokedex() {
+        return pokedex;
+    }
+
+    public void setPokedex(ArrayList<Pokemon> pokedex) {
+        this.pokedex = pokedex;
+    }
+    
     @Override
     public String toString() {
         return "nombre=" + nombre + ", apellido=" + apellido + ", usuario=" + usuario + ", contrase\u00f1a=" + contraseña + ", F_nacimiento=" + F_nacimiento + ", edad=" + edad + ", color=" + color + '}';

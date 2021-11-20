@@ -23,6 +23,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,6 +32,8 @@ import javax.swing.SpinnerDateModel;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -88,13 +91,13 @@ public class Main extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jt = new javax.swing.JTree();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        pnom = new javax.swing.JTextField();
+        pdan = new javax.swing.JSpinner();
+        php = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -334,14 +337,18 @@ public class Main extends javax.swing.JFrame {
         tab1.addTab("PokeGrupo", jPanel3);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(jTree1);
+        jt.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jt);
 
         jLabel5.setText("Nombre:");
 
         jLabel6.setText("Daño:");
 
         jLabel7.setText("HP:");
+
+        pdan.setModel(new javax.swing.SpinnerNumberModel(0, 0, 300, 50));
+
+        php.setModel(new javax.swing.SpinnerNumberModel(0, 0, 300, 50));
 
         jLabel8.setText("Velocidad:");
 
@@ -377,7 +384,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(109, 109, 109)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnom, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
@@ -387,9 +394,9 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(pdan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(php, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -426,9 +433,9 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pdan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(php, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -470,7 +477,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(tab1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+            .addComponent(tab1)
         );
         entrenadorLayout.setVerticalGroup(
             entrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,6 +492,11 @@ public class Main extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Bienvenido");
@@ -566,6 +578,7 @@ public class Main extends javax.swing.JFrame {
         String usuar = user.getText(), cont = con.getText();
         for (Usuarios u : us) {
             if (u.getUsuario().equals(usuar) && u.getContraseña().equals(cont)) {
+                v = u;
                 entrenador.setVisible(true);
                 nom.setText(u.getNombre());
                 user.setText("");
@@ -576,15 +589,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void entrenadorComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_entrenadorComponentShown
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (Usuarios usuario : us) {
-
-        }
-        cbox.setModel(modelo);
+        mostrar();
+        mostrar2();
+        mostrar3();
     }//GEN-LAST:event_entrenadorComponentShown
 
     private void tab1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tab1ComponentShown
-        // TODO add your handling code here:
     }//GEN-LAST:event_tab1ComponentShown
 
     private void tab1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tab1StateChanged
@@ -633,8 +643,17 @@ public class Main extends javax.swing.JFrame {
         int edad = (int) ChronoUnit.YEARS.between(nacimiento, hoy);
         System.out.println(edad);
         Color color = bt_color.getBackground();
-        us.add(new Usuarios(nombre, apellido, usuario, contraseña, F_nacimiento, edad, color));
+        ArrayList<Pokemon> pokedex = new ArrayList();
+        us.add(new Usuarios(nombre, apellido, usuario, contraseña, F_nacimiento, edad, color, pokedex));
     }//GEN-LAST:event_jButton8MouseClicked
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        try {
+            inicio();
+        } catch (ParseException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -716,11 +735,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JTree jt;
     private javax.swing.JLabel labcom;
     private javax.swing.JLabel labcom1;
     private javax.swing.JLabel labcom2;
@@ -730,12 +746,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JList<String> list4;
     private javax.swing.JLabel nom;
     private javax.swing.JTextField nomr;
+    private javax.swing.JSpinner pdan;
+    private javax.swing.JSpinner php;
+    private javax.swing.JTextField pnom;
     private javax.swing.JTabbedPane tab1;
     private javax.swing.JTextField user;
     private javax.swing.JTextField usr;
     // End of variables declaration//GEN-END:variables
 ArrayList<Usuarios> us = new ArrayList();
-ArrayList<PokeGrupo> pg = new ArrayList();
+    ArrayList<PokeGrupo> pg = new ArrayList();
+    Usuarios v;
+
     public void inicio() throws ParseException {
         String nombre = "Josue", apellido = "Rodriguez", usuario = "ReverseJosh", contraseña = "josu123";
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -744,31 +765,27 @@ ArrayList<PokeGrupo> pg = new ArrayList();
         int edad = ed(naci);
         ArrayList<Pokemon> pokedex = new ArrayList();
         pokedex.add(new Pokemon("Alakazam", "media", "psiquico", 100, 150));
-        ArrayList<Pokemon> pokedex1 = new ArrayList();
-        pokedex1.add(new Pokemon("Gengar", "media", "fantasma", 150, 100));
-        ArrayList<Pokemon> pokedex2 = new ArrayList();
+        pokedex.add(new Pokemon("Gengar", "media", "fantasma", 150, 100));
         ArrayList<Usuarios> miembros = new ArrayList();
-        miembros.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex, pokedex1, pokedex2));
-        us.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex, pokedex1, pokedex2));
+        us.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex));
+        miembros.add(us.get(0));
         nombre = "Sara";
         apellido = "Pineda";
         usuario = "SMelissa";
         contraseña = "SM123";
 
-        naci = formato.parse("26/10/1998");
-        c = Color.BLACK;
+        naci = formato.parse("21/02/2000");
+        c = Color.GREEN;
         edad = ed(naci);
         ArrayList<Pokemon> pokedex3 = new ArrayList();
         pokedex3.add(new Pokemon("Mr.Mime", "media", "psiquico", 130, 120));
-        ArrayList<Pokemon> pokedex4 = new ArrayList();
-        pokedex4.add(new Pokemon("Mimikyu", "alta", "fantasma", 150, 100));
-        ArrayList<Pokemon> pokedex5 = new ArrayList();
-        miembros.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex, pokedex1, pokedex2));
+        pokedex3.add(new Pokemon("Mimikyu", "alta", "fantasma", 150, 100));
+        us.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex3));
+        miembros.add(us.get(1));
 
-        us.add(new Usuarios(nombre, apellido, usuario, contraseña, naci, edad, c, pokedex3, pokedex4, pokedex5));
         String pnombre = "Neo Rocket", tipo = "Avanzado";
         Usuarios lider = us.get(1);
-        pg.add(new PokeGrupo(pnombre,tipo,miembros,lider));
+        pg.add(new PokeGrupo(pnombre, tipo, miembros, lider));
     }
 
     public int ed(Date naci) {
@@ -778,5 +795,65 @@ ArrayList<PokeGrupo> pg = new ArrayList();
         int edad = (int) ChronoUnit.YEARS.between(nacimiento, hoy);
         System.out.println(edad);
         return edad;
+    }
+
+    public void mostrar() {
+        DefaultListModel modelo
+                = new DefaultListModel();
+        for (PokeGrupo pokeGrupo : pg) {
+            System.out.println(pokeGrupo.toString());
+        }
+        for (PokeGrupo u : pg) {
+            for (int i = 0; i < pg.size(); i++) {
+                if (u.getMiebros().contains(v)) {
+                    for (int i1 = 0; i1 < pg.get(i).getMiebros().size(); i1++) {
+                        modelo.addElement(pg.get(i).getMiebros().get(i1).nombre);
+                        list4.setModel(modelo);
+                    }
+                }
+            }
+        }
+
+    }
+
+    public void mostrar2() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (PokeGrupo p : pg) {
+            modelo.addElement(p.nombre);
+        }
+        cbox.setModel(modelo);
+    }
+
+    public void mostrar3() {
+        String nombre, velocidad, tipo;
+        int daño, hp, cont = 0;
+        DefaultTreeModel modeloARBOL
+                = (DefaultTreeModel) jt.getModel();
+        DefaultMutableTreeNode raiz
+                = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+        DefaultMutableTreeNode n
+                = new DefaultMutableTreeNode("pokedex");
+        DefaultMutableTreeNode n1
+                = new DefaultMutableTreeNode("pokedex1");
+        DefaultMutableTreeNode n2
+                = new DefaultMutableTreeNode("pokedex2");
+        if (v.getPokedex().size() >= 0 || v.getPokedex().size() <= 3) {
+            DefaultMutableTreeNode p
+                    = new DefaultMutableTreeNode((v.getPokedex().get(cont).nombre));
+            n.add(p);
+            cont++;
+        } else if (v.getPokedex().size() >= 3 || v.getPokedex().size() <= 6) {
+            DefaultMutableTreeNode p
+                    = new DefaultMutableTreeNode((v.getPokedex().get(cont).nombre));
+            n1.add(p);
+            cont++;
+        }else if (v.getPokedex().size() >= 6 || v.getPokedex().size() <= 9) {
+             DefaultMutableTreeNode p
+                    = new DefaultMutableTreeNode((v.getPokedex().get(cont).nombre));
+            n2.add(p);
+            cont++;
+        }
+        raiz.add(n);
+        modeloARBOL.reload();
     }
 }
